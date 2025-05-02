@@ -9,7 +9,7 @@ import mailIcon from "../assets/icons/mail.icon.svg";
 import lockIcon from "../assets/icons/lock-icon.svg";
 import appleIcon from "../assets/icons/apple-icon.svg";
 import googleIcon from "../assets/icons/google-icon.svg";
-import logo from "/src/assets/logoziptrip.png";
+import logo from "/src/assets/kanda.svg";
 import backButton from "../assets/icons/backButton.svg";
 
 // SignInPage component
@@ -36,14 +36,11 @@ export default function SignInPage() {
   return (
     <section id="sign-in-page" className="page">
       <div className="header">
-        <img src={backButton} alt="Back Button" className="back-button-login" />
-        <img src={logo} alt="Off The Path Logo" className="logo" />
+       
+        <img src={logo} alt="Kanda Logo" className="logo-register" />
       </div>
       <h1 className="login-title">Log In</h1>
-      <p className="login-subtext">
-        Log in now to access all the features of{" "}
-        <span className="highlight">ZipTrip!</span>
-      </p>
+  
 
       <form id="sign-in-form" className="login-form" onSubmit={handleSignIn}>
         <div className="input-group email-group">
@@ -87,16 +84,7 @@ export default function SignInPage() {
           Log In
         </button>
 
-        <div className="social-login">
-          <button className="apple-login social-btn">
-            <img src={appleIcon} alt="Apple icon" className="social-icon" />
-            Sign in with Apple
-          </button>
-          <button className="google-login social-btn">
-            <img src={googleIcon} alt="Google icon" className="social-icon" />
-            Continue with Google
-          </button>
-        </div>
+   
       </form>
 
       <p className="register-link">

@@ -1,56 +1,68 @@
 import React, { useState, useEffect } from "react";
 import { auth } from "../firebase-config"; // firebase authentication
 import { updateProfile } from "firebase/auth"; // firebase function to update profile
-import "/src/styles.css";
 import { useNavigate } from "react-router-dom";
 
+import PostCard from "../components/PostCard"; // make sure the path is correct
 import backButton from "../assets/icons/backButton.svg";
 
+import "/src/styles.css"; // Your custom styles
+
 const ProfilePage = () => {
-  const [profileImage, setProfileImage] = useState(
-    auth.currentUser?.photoURL || "https://via.placeholder.com/150"
-  );
-  const [imageUrl, setImageUrl] = useState(profileImage); // store the new image URL
-  const [name, setName] = useState(
-    auth.currentUser?.displayName || "Anonymous"
-  );
+  const navigate = useNavigate();
+  const [profileImage, setProfileImage] = useState(auth.currentUser?.photoURL || "https://via.placeholder.com/150");
+  const [imageUrl, setImageUrl] = useState(profileImage);
+  const [name, setName] = useState(auth.currentUser?.displayName || "Anonymous");
+  const [posts, setPosts] = useState([]); // For sessions/posts
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (auth.currentUser) {
-      setProfileImage(
-        auth.currentUser.photoURL || "https://via.placeholder.com/150"
-      );
+      setProfileImage(auth.currentUser.photoURL || "https://via.placeholder.com/150");
       setName(auth.currentUser.displayName || "Anonymous");
     }
+
+    // Fetch posts from Firebase
+    fetch("https://kanda-vtp-analytics-dashboard-default-rtdb.europe-west1.firebasedatabase.app/sessions.json")
+      .then((res) => res.json())
+      .then((data) => {
+        const loadedPosts = [];
+        const user = auth.currentUser;
+        
+        for (const key in data) {
+          // Only include posts created by this user
+          if (data[key].facilitator?.name === user.displayName) {
+            loadedPosts.push({
+              id: key,
+              ...data[key],
+            });
+          }
+        }
+
+        setPosts(loadedPosts);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching posts:", error);
+        setLoading(false);
+      });
   }, []);
 
-  // function to handle name change
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
+  const handleNameChange = (e) => setName(e.target.value);
+  const handleImageUrlChange = (e) => setImageUrl(e.target.value);
 
-  // handle the URL input for the profile image
-  const handleImageUrlChange = (e) => {
-    setImageUrl(e.target.value);
-  };
+  const handleBack = () => navigate("/");
 
-  const navigate = useNavigate();
-
-  const handleBack = () => {
-    navigate("/"); // Navigate to the home page
-  };
-
-  // Save the profile changes to Firebase
   const handleSave = async () => {
     const user = auth.currentUser;
     if (user) {
       try {
         await updateProfile(user, {
           displayName: name,
-          photoURL: imageUrl, // Use the image URL from the input field
+          photoURL: imageUrl,
         });
         console.log("Profile updated successfully");
-        setProfileImage(imageUrl); // Update the profile image in the state
+        setProfileImage(imageUrl);
         alert("Profile updated successfully!");
       } catch (error) {
         console.error("Error updating profile:", error);
@@ -95,16 +107,38 @@ const ProfilePage = () => {
         />
       </div>
 
-      {/* Additional Profile Information */}
+      {/* Additional Profile Info */}
       <div className="profile-info">
         <p>Email: {auth.currentUser?.email}</p>
-        <p>Account created: {auth.currentUser?.metadata.creationTime}</p>
+        <p>Account Created: {auth.currentUser?.metadata.creationTime}</p>
       </div>
 
       {/* Save Button */}
       <button onClick={handleSave} className="save-button">
         Save Changes
       </button>
+
+      {/* Recent Sessions Section */}
+      <section className="recent-sessions">
+        <div className="section-header">
+          <h3>Your Recent Sessions</h3>
+          <span
+            className="view-all-text"
+            onClick={() => navigate("/all-sessions")}
+          >
+            View all &gt;
+          </span>
+        </div>
+
+        {/* Posts */}
+        {loading ? (
+          <p>Loading sessions...</p>
+        ) : posts.length > 0 ? (
+          <PostCard posts={posts} />
+        ) : (
+          <p>No sessions found!</p>
+        )}
+      </section>
     </section>
   );
 };

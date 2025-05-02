@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import PostCard from "../components/PostCard";
 import backButton from "../assets/icons/backButton.svg";
 import bar from "../assets/status-bar.png";
-import logo from "/src/assets/logoziptrip.png";
+import logo from "/src/assets/kanda.svg";
 import userAvatar from "../assets/icons/userAvatar.svg";
 
 export default function RidesPage() {

@@ -8,8 +8,8 @@ import "/src/styles.css";
 import mailIcon from "../assets/icons/mail.icon.svg";
 import userIcon from "../assets/icons/user-icon.svg";
 import lockIcon from "../assets/icons/lock-icon.svg";
-import logo from "/src/assets/logoziptrip.png";
-import backButton from "../assets/icons/backButton.svg";
+import logo from "/src/assets/kanda.svg";
+
 
 // SignUpPage component
 export default function RegisterPage() {
@@ -66,20 +66,37 @@ export default function RegisterPage() {
   return (
     <section id="register-page" className="page">
       <div className="header">
-        <img src={backButton} alt="Back Button" className="back-button" />
-        <img src={logo} alt="ZipTrip Logo" className="logo-register" />
+       
+        <img src={logo} alt="Kanda Logo" className="logo-register1" />
       </div>
       <h1 className="register-title">Register</h1>
-      <p className="register-subtext">
-        Create an <span className="highlight">account</span> to access all the
-        features of <span className="highlight">ZipTrip!</span>
-      </p>
+      
 
       <form
         id="register-form"
         className="register-form"
         onSubmit={handleRegister}
       >
+
+
+         {/* Name Input */}
+         <div className="input-group name-group">
+          <label htmlFor="name" className="input-label">
+            Name
+          </label>
+          <div className="input-field name-field">
+            <img src={userIcon} alt="User icon" className="input-icon" />
+            <input
+              id="name"
+              type="text"
+              name="name"
+              placeholder="Ex: John Smith"
+              required
+              className="input-box"
+            />
+          </div>
+        </div>
+        
         {/* Email Input */}
         <div className="input-group email-group">
           <label htmlFor="mail" className="input-label">
@@ -98,23 +115,7 @@ export default function RegisterPage() {
           </div>
         </div>
 
-        {/* Name Input */}
-        <div className="input-group name-group">
-          <label htmlFor="name" className="input-label">
-            Name
-          </label>
-          <div className="input-field name-field">
-            <img src={userIcon} alt="User icon" className="input-icon" />
-            <input
-              id="name"
-              type="text"
-              name="name"
-              placeholder="Ex: John Smith"
-              required
-              className="input-box"
-            />
-          </div>
-        </div>
+       
 
         {/* Password Input */}
         <div className="input-group password-group">
