@@ -8,7 +8,7 @@ Welcome to the glorious adventure of my AmAzInG coded app solution! 🎉 ZipTrip
 ...duh, simply click the link and get ready to experience the magic! 
 
 2. Resize the page to mobile size 📲
-For the best experience, resize your browser to 393px x 852px — or better yet, just open it on your phone! ZipTrip is optimized for a smooth mobile experience. 📱
+For the best experience, resize your browser to 402px x 874px — or better yet, just open it on your phone! ZipTrip is optimized for a smooth mobile experience. 📱
 
 3. Explore, explore, EXPLORE!!!
 Dive into the world of ZipTrip and discover the travel possibilities, share a car, book rides, and enjoy a seamless, fun journey while saving the environment with the app’s easy-to-navigate design! ✈️🗺️
