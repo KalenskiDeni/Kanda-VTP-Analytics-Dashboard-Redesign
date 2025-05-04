@@ -18,7 +18,7 @@ export default function ChatPage() {
         const data = await response.json();
         console.log("Fetched users raw data:", data);
 
-        // Convert object with numeric keys into array
+        // convert object with numeric keys into array
         if (data && typeof data === "object") {
           setUsers(Object.values(data));
         } else {

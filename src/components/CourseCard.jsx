@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles.css";
 
+// Sample course data
 const CourseCard = ({ course }) => (
   <div className="course-card">
     <div className="course-duration">{course.duration}</div>

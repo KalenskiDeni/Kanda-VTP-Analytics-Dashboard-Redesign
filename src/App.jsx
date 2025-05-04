@@ -1,28 +1,21 @@
-//Created by everyone
-
 import { Navigate, Route, Routes } from "react-router-dom";
 import Nav from "./components/Nav";
 import CreatePage from "./pages/CreatePage";
 import HomePage from "./pages/HomePage";
 import PostDetailPage from "./pages/PostDetailPage";
-import ExploreRidesPage from "./pages/ExploreRidesPage";
+import AnalyticsPage from "./pages/AnalyticsPage";
 import Users from "./pages/Users";
-import RentPage from "./pages/RentPage";
 import UpdatePage from "./pages/UpdatePage";
 import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
-import RidesPage from "./pages/RidesPage";
 import ProfilePage from "./pages/ProfilePage";
-import InstantBookingPage from "./pages/InstantBookingPage";
 import Devices from "./pages/Devices";
 import AllSessions from "./pages/AllSessions";
 import SessionFilterOverlay from "./pages/SessionFilterOverlay";
 import LeaderboardPage from "./pages/LeaderboardPage";
 import MainIssues from "./pages/MainIssues";
 
-
-
-import "/src/styles.css"; // Global styles
+import "/src/styles.css"; 
 
 import OnBoarding from "./pages/OnBoarding";
 
@@ -55,23 +48,21 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/posts/:id" element={<PostDetailPage />} />
-        <Route path="/explore" element={<ExploreRidesPage />} />
+        <Route path="/analytics" element={<AnalyticsPage />} />
         <Route path="/users" element={<Users />} />
         <Route path="/create" element={<CreatePage />} />
         <Route path="/posts/:id/update" element={<UpdatePage />} />
-        <Route path="/rent" element={<RentPage />} />
-        <Route path="/rides" element={<RidesPage />} />
         <Route path="/devices" element={<Devices />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/booking" element={<InstantBookingPage />} />
         <Route path="/all-sessions" element={<AllSessions />} />
-        <Route path="/sessionfilteroverlay" element={<SessionFilterOverlay />} />
+        <Route
+          path="/sessionfilteroverlay"
+          element={<SessionFilterOverlay />}
+        />
         <Route path="/leaderboard" element={<LeaderboardPage />} />
         <Route path="/mainissues" element={<MainIssues />} />
-  
-   
 
-        {/* Catch-all redirect */}
+
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </>

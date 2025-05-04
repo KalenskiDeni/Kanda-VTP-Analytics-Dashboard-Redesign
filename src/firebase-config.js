@@ -1,9 +1,8 @@
-// Import necessary Firebase SDK functions
+
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 
-// Your Firebase configuration object
 const firebaseConfig = {
   apiKey: "AIzaSyDvJ2gm2pDbZ9TNVC-pmohchqj-nb0gkxk",
   authDomain: "kanda-vtp-analytics-dashboard.firebaseapp.com",
@@ -15,16 +14,13 @@ const firebaseConfig = {
   measurementId: "G-M4R484F3ZD"
 };
 
-// Initialize Firebase
+
 const app = initializeApp(firebaseConfig);
 
-// Get a reference to the database
 const db = getDatabase(app);
 
-// Export the db so you can use it in other files
 export { db };
 
-// Export Firebase services to be used in other parts of the app
 export const auth = getAuth(app);
 export const database = getDatabase(app);
 

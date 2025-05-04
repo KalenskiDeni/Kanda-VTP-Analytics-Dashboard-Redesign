@@ -1,6 +1,13 @@
 import React from "react";
 
-const ProgressSection = ({ className, percentage, time, title, sessions, users }) => {
+const ProgressSection = ({
+  className,
+  percentage,
+  time,
+  title,
+  sessions,
+  users,
+}) => {
   return (
     <section className={`progress-section ${className}`}>
       <div className="circular-progress">

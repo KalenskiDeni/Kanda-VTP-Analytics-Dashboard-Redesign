@@ -5,7 +5,6 @@ import user2 from "../assets/icons/bjørn.svg";
 import user3 from "../assets/icons/henrik.svg";
 import leaderboardArrow from "../assets/icons/LeaderboardArrow.svg";
 
-
 const users = [
   { name: "Matias Jensen", points: "1,398 XP", position: 1, img: user1 },
   { name: "Bjorn Hansen", points: "1,092 XP", position: 2, img: user2 },
@@ -32,16 +31,16 @@ const LeaderboardSection = () => {
               <p>{user.name}</p>
               <small>{user.points}</small>
             </div>
-          
 
-    <div className="position-with-icon">
-    <span>{user.position}</span>
-  <img src={leaderboardArrow} alt="Position Icon" className="position-icon" />
-
-</div>
+            <div className="position-with-icon">
+              <span>{user.position}</span>
+              <img
+                src={leaderboardArrow}
+                alt="Position Icon"
+                className="position-icon"
+              />
+            </div>
           </div>
-
-          
         ))}
       </div>
     </section>

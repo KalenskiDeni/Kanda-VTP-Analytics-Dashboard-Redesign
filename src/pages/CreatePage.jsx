@@ -13,8 +13,8 @@ const CreatePostPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validation checks
-    if (!courseName || !sessionName || !description) {
+
+    if (!courseName || !sessionName) {
       alert("Please fill in all fields.");
       return;
     }
@@ -36,16 +36,13 @@ const CreatePostPage = () => {
       time: new Date().toLocaleTimeString(),
     };
 
-    console.log("Creating post with data:", newPost); // Log post data before adding it to Firebase
-
     try {
-      const postsRef = ref(database, "posts"); // Changed to "posts" node
-      const postKey = await push(postsRef, newPost); // Push new post to the 'posts' node
-      console.log("Post created with key:", postKey.key); // Log the generated key for debugging
+      const postsRef = ref(database, "posts");
+      const postKey = await push(postsRef, newPost);
       alert("Post created!");
-      navigate("/"); // Navigate back to the homepage after creation
+      navigate("/"); 
     } catch (err) {
-      console.error("Post creation failed:", err); // Log error message
+      console.error("Post creation failed:", err);
       alert("Something went wrong while creating the post.");
     }
   };
@@ -64,19 +61,10 @@ const CreatePostPage = () => {
         onChange={(e) => setSessionName(e.target.value)}
         className="form-input"
       />
-      <textarea
-        placeholder="Description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        className="form-textarea"
-      />
-      <textarea
-        placeholder="Additional Info"
-        value={additionalInfo}
-        onChange={(e) => setAdditionalInfo(e.target.value)}
-        className="form-textarea"
-      />
-      <button type="submit" className="submit-button">Create Post</button>
+
+      <button type="submit" className="submit-button">
+        Create Post
+      </button>
     </form>
   );
 };

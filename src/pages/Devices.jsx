@@ -1,33 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { db } from "../firebase-config";
+import { ref, onValue } from "firebase/database";
+
 import vrIcon from "../assets/icons/headset.png";
 import backArrow from "/src/assets/icons/backArrow.svg";
 
-const devicesData = [
-  { name: "Meta Quest QW7", status: "Disconnected" },
-  { name: "Meta Quest X10", status: "Disconnected" },
-  { name: "Meta Quest Pro", status: "Disconnected" },
-  { name: "Meta Quest Elite", status: "Active" },
-  { name: "Meta Quest Mini", status: "Active" },
-];
-
-const Devices = () => {
+const DevicesPage = () => {
   const navigate = useNavigate();
+  const [devices, setDevices] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterStatus, setFilterStatus] = useState("All");
+
+  useEffect(() => {
+    const devicesRef = ref(db, "devices");
+    const unsubscribe = onValue(devicesRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        const devicesArray = Object.entries(data).map(([id, device]) => ({
+          id,
+          ...device,
+        }));
+        setDevices(devicesArray);
+      } else {
+        setDevices([]);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   const handleBackButtonClick = () => {
     navigate(-1);
   };
 
-  const filteredDevices = devicesData.filter((device) => {
-    const matchesSearch = device.name.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesFilter = filterStatus === "All" || device.status === filterStatus;
+  const filteredDevices = devices.filter((device) => {
+    const matchesSearch = device.name
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    const matchesFilter =
+      filterStatus === "All" || device.status === filterStatus;
     return matchesSearch && matchesFilter;
   });
 
   return (
-    <div className="devices-page">
+    <div className="scoped-devices">
       <header className="top-bar">
         <button className="back-button" onClick={handleBackButtonClick}>
           <img src={backArrow} alt="Go back" />
@@ -35,7 +52,6 @@ const Devices = () => {
         <h1 className="page-title">Device History</h1>
       </header>
 
-      {/* Search + Filter */}
       <div className="search-filter-row">
         <input
           type="text"
@@ -55,22 +71,23 @@ const Devices = () => {
         </select>
       </div>
 
-      {filteredDevices.map((device, index) => (
-        <div key={index}>
-          <div className="device-info">
-            <img src={vrIcon} alt="VR Headset" />
-            <div>
-              <p className={`status ${device.status.toLowerCase()}`}>
-                <span className={`status-dot ${device.status.toLowerCase()}-dot`}></span>
-                {device.status}
-              </p>
-              <p className="headset-name">{device.name}</p>
-            </div>
+      {filteredDevices.map((device) => (
+        <div key={device.id} className="device-info">
+          <img src={vrIcon} alt="VR Headset" />
+          <div className="device-details">
+            <p className={`status ${device.status.toLowerCase()}`}>
+              <span
+                className={`status-dot ${device.status.toLowerCase()}-dot`}
+              ></span>
+              {device.status}
+            </p>
+            <p className="headset-name">{device.name}</p>
           </div>
+          <div className="device-date">{device.date}</div>
         </div>
       ))}
     </div>
   );
 };
 
-export default Devices;
+export default DevicesPage;

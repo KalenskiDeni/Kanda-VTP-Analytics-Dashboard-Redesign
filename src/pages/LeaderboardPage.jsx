@@ -1,48 +1,84 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import user1 from "../assets/icons/matias.svg";
-import user2 from "../assets/icons/bjørn.svg";
-import user3 from "../assets/icons/henrik.svg";
-import backArrow from "/src/assets/icons/backArrow.svg";
+import "/src/styles.css"; 
+import backArrow from "/src/assets/icons/backArrow.svg"; 
 
-// Dummy data
-const allUsers = Array.from({ length: 20 }, (_, i) => ({
-  name: `User ${i + 1}`,
-  points: `${Math.floor(Math.random() * 2000)} XP`,
-  position: i + 1,
-  img: [user1, user2, user3][i % 3],
-}));
-
-const LeaderboardPage = () => {
+export default function LeaderboardPage() {
+  const [leaderboard, setLeaderboard] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  const handleBackButtonClick = () => navigate(-1);
+  useEffect(() => {
+    // fetch leaderboard data from Firebase
+    async function fetchLeaderboard() {
+      try {
+        // correct Firebase URL to fetch leaderboard data
+        const response = await fetch(
+          "https://kanda-vtp-analytics-dashboard-default-rtdb.europe-west1.firebasedatabase.app/leaderboard.json"
+        );
+        const data = await response.json();
+
+        console.log("Fetched leaderboard data:", data);
+
+        // check if the data contains the leaderboard and transform it into an array
+        if (data) {
+          // convert the object into an array for easy mapping
+          setLeaderboard(Object.values(data));
+        } else {
+          setLeaderboard([]); // if no leaderboard data, set empty array
+        }
+      } catch (error) {
+        console.error("Error fetching leaderboard data:", error);
+        setLeaderboard([]); // If an error occurs, set empty array
+      } finally {
+        setLoading(false); // Stop loading when data is fetched
+      }
+    }
+
+    fetchLeaderboard();
+  }, []); 
+
+  if (loading) return <div>Loading...</div>;
 
   return (
-    <div className="leaderboard-page">
+    <section className="chat-page">
       <header className="top-bar">
-        <button className="back-button" onClick={handleBackButtonClick}>
+        <button className="back-button" onClick={() => navigate(-1)}>
           <img src={backArrow} alt="Go back" />
         </button>
         <h1 className="page-title">Leaderboard</h1>
       </header>
 
-
-
-      <div className="leaderboard-list">
-        {allUsers.map((user, i) => (
-          <div key={i} className="leaderboard-item">
-            <img src={user.img} alt={user.name} />
-            <div>
-              <p>{user.name}</p>
-              <small>{user.points}</small>
-            </div>
-            <span>#{user.position}</span>
-          </div>
-        ))}
+      <div className="weird-text-messages">
+        <h1>Leaderboard</h1>
       </div>
-    </div>
-  );
-};
 
-export default LeaderboardPage;
+      <div className="search-bar-chat">
+        <input type="text" placeholder="Search..." />
+      </div>
+
+      <div className="chat-list">
+        {leaderboard.length > 0 ? (
+          leaderboard.map((user, index) => (
+            <div key={user.position} className="chat-item">
+              <img
+                src={user.avatar}
+                alt={`${user.name}'s avatar`}
+                className="chat-avatar"
+              />
+              <div className="chat-info">
+                <div className="chat-name">{user.name}</div>
+                <div className="chat-points">{user.points}</div>
+              </div>
+              <div className="chat-meta">
+                <span className="chat-position">Position: {user.position}</span>
+              </div>
+            </div>
+          ))
+        ) : (
+          <div>No leaderboard data available</div>
+        )}
+      </div>
+    </section>
+  );
+}

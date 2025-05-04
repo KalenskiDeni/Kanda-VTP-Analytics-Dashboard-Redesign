@@ -1,11 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import liftIcon from "../assets/icons/lift.svg"; // Default icon
+import liftIcon from "../assets/icons/lift.svg"; 
 
 const PostCard = ({ posts }) => {
   const navigate = useNavigate();
 
-  // If no posts or an empty array is passed, show a message
+  
   if (!posts || posts.length === 0) {
     return <p>No posts available</p>;
   }
@@ -31,7 +31,7 @@ const PostCard = ({ posts }) => {
           >
             <div className="duration">{post.duration}</div>
             <img
-              src={post.icon || liftIcon} // Fallback to default icon if none is provided
+              src={post.icon || liftIcon}
               alt="session icon"
               className="icon"
             />

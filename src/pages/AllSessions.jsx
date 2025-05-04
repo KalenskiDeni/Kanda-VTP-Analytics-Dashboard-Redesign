@@ -1,28 +1,82 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import SessionFilterOverlay from "./SessionFilterOverlay"; 
+import SessionFilterOverlay from "./SessionFilterOverlay";
 import backArrow from "/src/assets/icons/backArrow.svg";
 import clockIcon from "/src/assets/icons/clock.svg";
 
-// Mock session data (you should replace this with your real data or Firebase)
+
 const allSessions = [
-  { id: 1, title: "Demo Slinger Signaller", creator: "John Smith", date: "30/04/2025", duration: "1.30 h", status: "Active", icon: "/src/assets/icons/slinger.svg", course: "Slinger Signaller" },
-  { id: 2, title: "Demo BTT Electrical", creator: "John Smith", date: "30/04/2025", duration: "1.15 h", status: "Active", icon: "/src/assets/icons/electrical.svg", course: "BTT Electrical" },
-  { id: 3, title: "Test Service Lift User", creator: "John Smith", date: "26/04/2025", duration: "2.30 h", status: "Completed", icon: "/src/assets/icons/service-lift.svg", course: "Service Lift User" },
-  { id: 4, title: "Demo OTO", creator: "Jane Doe", date: "22/04/2025", duration: "1.35 h", status: "Active", icon: "/src/assets/icons/oto.svg", course: "BTT Mechanical" },
-  { id: 5, title: "Test BTT Hydraulic", creator: "John Smith", date: "20/04/2025", duration: "1.40 h", status: "Completed", icon: "/src/assets/icons/hydraulic.svg", course: "BTT Hydraulic" },
-  { id: 6, title: "Demo BTT Electrical", creator: "Jane Doe", date: "17/04/2025", duration: "1.10 h", status: "Active", icon: "/src/assets/icons/electrical.svg", course: "BTT Electrical" },
+  {
+    id: 1,
+    title: "Demo Slinger Signaller",
+    creator: "John Smith",
+    date: "30/04/2025",
+    duration: "1.30 h",
+    status: "Active",
+    icon: "/src/assets/icons/slinger.svg",
+    course: "Slinger Signaller",
+  },
+  {
+    id: 2,
+    title: "Demo BTT Electrical",
+    creator: "John Smith",
+    date: "30/04/2025",
+    duration: "1.15 h",
+    status: "Active",
+    icon: "/src/assets/icons/electrical.svg",
+    course: "BTT Electrical",
+  },
+  {
+    id: 3,
+    title: "Test Service Lift User",
+    creator: "John Smith",
+    date: "26/04/2025",
+    duration: "2.30 h",
+    status: "Completed",
+    icon: "/src/assets/icons/service-lift.svg",
+    course: "Service Lift User",
+  },
+  {
+    id: 4,
+    title: "Demo OTO",
+    creator: "Jane Doe",
+    date: "22/04/2025",
+    duration: "1.35 h",
+    status: "Active",
+    icon: "/src/assets/icons/oto.svg",
+    course: "BTT Mechanical",
+  },
+  {
+    id: 5,
+    title: "Test BTT Hydraulic",
+    creator: "John Smith",
+    date: "20/04/2025",
+    duration: "1.40 h",
+    status: "Completed",
+    icon: "/src/assets/icons/hydraulic.svg",
+    course: "BTT Hydraulic",
+  },
+  {
+    id: 6,
+    title: "Demo BTT Electrical",
+    creator: "Jane Doe",
+    date: "17/04/2025",
+    duration: "1.10 h",
+    status: "Active",
+    icon: "/src/assets/icons/electrical.svg",
+    course: "BTT Electrical",
+  },
 ];
 
-// Assuming the logged-in user is John Smith
+
 const userName = "John Smith";
 
 const AllSessions = () => {
   const navigate = useNavigate();
   const [showFilter, setShowFilter] = useState(false);
-  const [activeTab, setActiveTab] = useState("yours"); // Active tab state
-  const [searchTerm, setSearchTerm] = useState(""); // Search term state
-  const [filterCourse, setFilterCourse] = useState("All"); // Filter dropdown state for courses
+  const [activeTab, setActiveTab] = useState("yours"); // active tab state
+  const [searchTerm, setSearchTerm] = useState(""); // search term state
+  const [filterCourse, setFilterCourse] = useState("All"); // filter dropdown state for courses
 
   const handleBackButtonClick = () => navigate(-1);
 
@@ -31,28 +85,28 @@ const AllSessions = () => {
   };
 
   const handleTabSwitch = (tab) => {
-    setActiveTab(tab); // Switch between "Yours" and "All"
+    setActiveTab(tab); // switch between "Yours" and "All"
   };
 
-  // Filter sessions based on the active tab, search term, and filter course
+  // filter sessions based on the active tab, search term, and filter course
   const filteredSessions = allSessions
     .filter((session) => {
       if (activeTab === "yours" && session.creator !== userName) {
-        return false; // Exclude sessions not created by the logged-in user
+        return false; 
       }
-      return true; // Include all sessions if "All" tab is active or user session matches
+      return true; 
     })
     .filter((session) => {
       if (searchTerm) {
         return session.title.toLowerCase().includes(searchTerm.toLowerCase());
       }
-      return true; // Include all sessions if no search term
+      return true; 
     })
     .filter((session) => {
       if (filterCourse !== "All") {
         return session.course === filterCourse;
       }
-      return true; // Include all sessions if filter is set to "All"
+      return true; 
     });
 
   return (
@@ -109,7 +163,11 @@ const AllSessions = () => {
             className="session-card"
             onClick={() => handleSessionClick(session.id)}
           >
-            <img src={session.icon} alt="Session Icon" className="session-icon" />
+            <img
+              src={session.icon}
+              alt="Session Icon"
+              className="session-icon"
+            />
             <div className="session-info">
               <p className="session-title">{session.title}</p>
               <p className="session-creator">{session.creator}</p>
@@ -123,7 +181,9 @@ const AllSessions = () => {
         ))}
       </div>
 
-      {showFilter && <SessionFilterOverlay onClose={() => setShowFilter(false)} />}
+      {showFilter && (
+        <SessionFilterOverlay onClose={() => setShowFilter(false)} />
+      )}
     </div>
   );
 };

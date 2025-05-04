@@ -1,6 +1,32 @@
-# ZipTrip
+# KANDA Virtual Training Platform - Analytics Mobile Dashboard Redesign
 
-Welcome to the glorious adventure of my AmAzInG coded app solution! 🎉 ZipTrip is here to make your travel plans as fun and seamless as possible, all with a tap of your fingers. 🚗🌍
+Welcome to the **KANDA Analytics Mobile Dashboard** project!  
+This project is a redesigned and modernized version of KANDA’s internal analytics dashboard, optimized for mobile devices. It allows users to view key insights into VR training usage, user engagement, leaderboard standings, and device statuses.
+
+---
+
+## 🚀 Project Overview
+
+The purpose of this redesign is to enhance the **usability, clarity, and mobile accessibility** of KANDA's training platform analytics. This includes features such as:
+
+- 👥 **User Leaderboard** with XP and avatars
+- 📈 **Training Session Insights (Posts)**
+
+Built with modern web technologies and designed to scale with Firebase integration.
+
+---
+
+## 🛠️ Tech Stack
+
+- **React.js** – Frontend framework
+- **React Router** – Navigation
+- **Firebase Realtime Database** – Backend and data storage
+- **Vite** – Lightning-fast development environment
+- **CSS Modules / SCSS** – Styling
+- **Unsplash API** – User avatar images
+
+---
+
 
 ## Quick Start Guide
 
@@ -8,19 +34,18 @@ Welcome to the glorious adventure of my AmAzInG coded app solution! 🎉 ZipTrip
 ...duh, simply click the link and get ready to experience the magic! 
 
 2. Resize the page to mobile size 📲
-For the best experience, resize your browser to 402px x 874px — or better yet, just open it on your phone! ZipTrip is optimized for a smooth mobile experience. 📱
+For the best experience, resize your browser to 402px x 874px — or better yet, just open it on your phone! Kanda VTP Analytics Dashboard is optimized for a smooth mobile experience. 📱
 
 3. Explore, explore, EXPLORE!!!
-Dive into the world of ZipTrip and discover the travel possibilities, share a car, book rides, and enjoy a seamless, fun journey while saving the environment with the app’s easy-to-navigate design! ✈️🗺️
 
 
-## Technology Stack
+## 🛠️ Tech Stack
 
-Frontend: React, JSX, HTML5, CSS3 <br>
-Backend: Firebase (for data storage and authentication) <br>
-Hosting: GitHub Pages
+- **React.js** – Frontend framework
+- **React Router** – Navigation
+- **Firebase Realtime Database** – Backend and data storage
+- **Vite** – Lightning-fast development environment
+- **CSS Modules / SCSS** – Styling
+- **Unsplash API** – User avatar images
 
-
-## Sustainability and CO2 Emissions 🌱
-
-At ZipTrip, we’re committed to sustainability and reducing our environmental impact. By promoting eco-friendly shared trips, we help contribute to a greener planet. ZipTrip is not only about getting from one place to another—it's about making the world a better place, one ride at a time. 🌍🌱
+---

@@ -21,15 +21,31 @@ export default function Nav() {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
 
-  // List of pages where the sidebar should be removed
-  const noSidebarPages = ["/home", "/profile", "/explore", "/posts", "/leaderboard", "/mainissues", "/users", "/all-sessions", "/devices", "/posts/1", "/posts/2", "/posts/3", "/posts/4", "/posts/5", "/posts/6"];  // Added /explore to this list
+  // List of the pages where the sidebar is going to be removed
+  const noSidebarPages = [
+    "/home",
+    "/profile",
+    "/analytics",
+    "/posts",
+    "/leaderboard",
+    "/mainissues",
+    "/users",
+    "/all-sessions",
+    "/devices",
+    "/posts/1",
+    "/posts/2",
+    "/posts/3",
+    "/posts/4",
+    "/posts/5",
+    "/posts/6",
+  ]; 
 
-  // Check if the current page is in the `noSidebarPages` list
+ 
   const shouldHideSidebar = noSidebarPages.includes(location.pathname);
 
   return (
     <>
-      {/* If the page is not in the list, show the burger button */}
+      {/* show the burger button if the page is not in the list*/}
       {!shouldHideSidebar && !isOpen && (
         <button className="burger-btn" onClick={() => setIsOpen(true)}>
           <img src={menuIcon} alt="Open Menu" />
@@ -39,7 +55,7 @@ export default function Nav() {
       {/* Only show the sidebar if the page is not in the `noSidebarPages` list */}
       {!shouldHideSidebar && (
         <nav className={`sidebar ${isOpen ? "open" : ""}`}>
-          {/* Sidebar Header */}
+  
           <div className="sidebar-header">
             <span className="app-name">Kanda Aps</span>
             <button className="close-btn" onClick={() => setIsOpen(false)}>
@@ -47,11 +63,13 @@ export default function Nav() {
             </button>
           </div>
 
-          {/* Top Section (Main Links) */}
+        
           <div className="nav-section top">
             <NavLink
               to="/home"
-              className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}
+              className={({ isActive }) =>
+                `nav-item ${isActive ? "active" : ""}`
+              }
               onClick={() => setIsOpen(false)}
             >
               <img
@@ -63,7 +81,9 @@ export default function Nav() {
 
             <NavLink
               to="/files"
-              className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}
+              className={({ isActive }) =>
+                `nav-item ${isActive ? "active" : ""}`
+              }
               onClick={() => setIsOpen(false)}
             >
               <img src={files} alt="Files" />
@@ -72,22 +92,28 @@ export default function Nav() {
 
             <NavLink
               to="/create"
-              className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}
+              className={({ isActive }) =>
+                `nav-item ${isActive ? "active" : ""}`
+              }
               onClick={() => setIsOpen(false)}
             >
               <img
-                src={location.pathname === "/create" ? matchFilled : matchOutlined}
+                src={
+                  location.pathname === "/create" ? matchFilled : matchOutlined
+                }
                 alt="Create Session"
               />
               <span>Create Session</span>
             </NavLink>
           </div>
 
-          {/* Bottom Section (Additional Links) */}
+        
           <div className="nav-section bottom">
             <NavLink
               to="/users"
-              className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}
+              className={({ isActive }) =>
+                `nav-item ${isActive ? "active" : ""}`
+              }
               onClick={() => setIsOpen(false)}
             >
               <img src={chatOutlined} alt="Users" />
@@ -96,11 +122,17 @@ export default function Nav() {
 
             <NavLink
               to="/profile"
-              className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}
+              className={({ isActive }) =>
+                `nav-item ${isActive ? "active" : ""}`
+              }
               onClick={() => setIsOpen(false)}
             >
               <img
-                src={location.pathname === "/profile" ? profileFilled : profileOutlined}
+                src={
+                  location.pathname === "/profile"
+                    ? profileFilled
+                    : profileOutlined
+                }
                 alt="Profile"
               />
               <span>Profile</span>
@@ -108,7 +140,9 @@ export default function Nav() {
 
             <NavLink
               to="/downloadApp"
-              className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}
+              className={({ isActive }) =>
+                `nav-item ${isActive ? "active" : ""}`
+              }
               onClick={() => setIsOpen(false)}
             >
               <img src={downloadApp} alt="Download App" />
@@ -117,7 +151,9 @@ export default function Nav() {
 
             <NavLink
               to="/support"
-              className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}
+              className={({ isActive }) =>
+                `nav-item ${isActive ? "active" : ""}`
+              }
               onClick={() => setIsOpen(false)}
             >
               <img src={support} alt="Support" />
@@ -126,7 +162,9 @@ export default function Nav() {
 
             <NavLink
               to="/feedback"
-              className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}
+              className={({ isActive }) =>
+                `nav-item ${isActive ? "active" : ""}`
+              }
               onClick={() => setIsOpen(false)}
             >
               <img src={feedback} alt="Feedback" />
@@ -135,7 +173,9 @@ export default function Nav() {
 
             <NavLink
               to="/settings"
-              className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}
+              className={({ isActive }) =>
+                `nav-item ${isActive ? "active" : ""}`
+              }
               onClick={() => setIsOpen(false)}
             >
               <img src={settings} alt="Settings" />
@@ -144,7 +184,9 @@ export default function Nav() {
 
             <NavLink
               to="/logout"
-              className={({ isActive }) => `nav-item ${isActive ? "active" : ""}`}
+              className={({ isActive }) =>
+                `nav-item ${isActive ? "active" : ""}`
+              }
               onClick={() => setIsOpen(false)}
             >
               <img src={logout} alt="Log Out" />

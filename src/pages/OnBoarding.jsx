@@ -15,10 +15,9 @@ const onboardingScreens = [
     description:
       "Join a community of travelers who share rides and reduce the carbon footprint together. Connect with others, save money, and explore new places—all while making a positive impact on the environment.",
     buttonLabel: "Get Started",
-    image: gif, // Use GIF for the first screen
-    lightText: true, // Light text on the first screen
+    image: gif, // use GIF for the first screen
+    lightText: true, // light text on the first screen
   },
-
 ];
 
 function MyComponent() {
@@ -39,33 +38,33 @@ function MyComponent() {
         lightText ? "onboarding-light" : "onboarding-dark"
       }`}
     >
-      {/* For the first screen, show the GIF as the background */}
+      {/* for the first screen, the GIF as the background */}
       {currentScreen === 0 && (
         <div className="onboarding-video-container">
           <img src={gif} alt="Tesla GIF" className="onboarding-video" />
         </div>
       )}
 
-      {/* Logo */}
+      {/* logo */}
       <div className="onboarding-logo">
-        {/* Conditionally render the white logo on the first screen */}
+        {/* conditionally render the white logo on the first screen */}
         <img src={currentScreen === 0 ? whiteLogo : logo} alt="ZipTrip Logo" />
       </div>
 
-      {/* Content */}
+      {/* content */}
       <div className="onboarding-content">
-        {/* For other screens, show images */}
+        {/* for other screens, show images */}
         {currentScreen !== 0 && (
           <div className="onboarding-image-container">
             <img src={image} alt="Illustration" className="onboarding-image" />
           </div>
         )}
 
-        {/* Text */}
+        {/* text */}
         <h1 className="onboarding-title">{title}</h1>
         <p className="onboarding-paragraph">{description}</p>
 
-        {/* Dots indicator */}
+        {/* dots indicator */}
         {currentScreen > 0 && (
           <div className="onboarding-dots">
             {onboardingScreens.map((_, index) => (
@@ -79,7 +78,7 @@ function MyComponent() {
           </div>
         )}
 
-        {/* Navigation */}
+        {/* navigation */}
         <div className="onboarding-navigation">
           {currentScreen < onboardingScreens.length - 1 ? (
             <button className="onboarding-continue" onClick={nextScreen}>

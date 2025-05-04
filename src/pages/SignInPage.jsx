@@ -32,15 +32,13 @@ export default function SignInPage() {
       });
   }
 
-  // Return the JSX for the SignInPage component
+  // return the JSX for the SignInPage component
   return (
     <section id="sign-in-page" className="page">
       <div className="header">
-       
         <img src={logo} alt="Kanda Logo" className="logo-register" />
       </div>
       <h1 className="login-title">Log In</h1>
-  
 
       <form id="sign-in-form" className="login-form" onSubmit={handleSignIn}>
         <div className="input-group email-group">
@@ -83,8 +81,6 @@ export default function SignInPage() {
         <button type="submit" className="login-btn">
           Log In
         </button>
-
-   
       </form>
 
       <p className="register-link">
