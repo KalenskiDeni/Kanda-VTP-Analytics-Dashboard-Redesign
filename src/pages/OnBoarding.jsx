@@ -2,18 +2,11 @@ import { NavLink } from "react-router-dom";
 import React, { useState } from "react";
 import "/src/styles.css";
 import gif from "/src/assets/background.png";
-import image1 from "/src/assets/onboarding1.png";
-import image2 from "/src/assets/onboarding2.png";
-import image3 from "/src/assets/onboarding3.png";
-import image4 from "/src/assets/onboarding4.png";
-import logo from "/src/assets/logoziptrip.png";
 import whiteLogo from "/src/assets/logokanda.svg";
 
 const onboardingScreens = [
   {
     title: "Welcome to Kanda Virtual Training Platform!",
-    description:
-      "Join a community of travelers who share rides and reduce the carbon footprint together. Connect with others, save money, and explore new places—all while making a positive impact on the environment.",
     buttonLabel: "Get Started",
     image: gif, // use GIF for the first screen
     lightText: true, // light text on the first screen

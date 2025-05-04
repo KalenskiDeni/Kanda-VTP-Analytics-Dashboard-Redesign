@@ -7,8 +7,6 @@ import "/src/styles.css";
 import arrowIcon from "../assets/icons/arrow-icon.svg";
 import mailIcon from "../assets/icons/mail.icon.svg";
 import lockIcon from "../assets/icons/lock-icon.svg";
-import appleIcon from "../assets/icons/apple-icon.svg";
-import googleIcon from "../assets/icons/google-icon.svg";
 import logo from "/src/assets/kanda.svg";
 import backButton from "../assets/icons/backButton.svg";
 

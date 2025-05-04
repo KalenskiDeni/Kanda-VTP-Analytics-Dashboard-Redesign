@@ -11,7 +11,6 @@ import mechanicalIcon from "/src/assets/icons/mechanical.svg";
 import liftIcon from "/src/assets/icons/lift.svg";
 import slingerIcon from "/src/assets/icons/slinger.svg";
 import offshoreIcon from "/src/assets/icons/offshore.svg";
-import defaultAvatar from "/src/assets/icons/userAvatar.svg";
 
 // Sample course data
 const lastOpenedCourses = [

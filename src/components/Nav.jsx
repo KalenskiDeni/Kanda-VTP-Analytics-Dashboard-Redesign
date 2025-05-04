@@ -13,7 +13,6 @@ import files from "../assets/icons/files.svg";
 import profileOutlined from "../assets/icons/profile.svg";
 import downloadApp from "../assets/icons/download.svg";
 import support from "../assets/icons/support.svg";
-import feedback from "../assets/icons/feedback.svg";
 import settings from "../assets/icons/settings.svg";
 import logout from "../assets/icons/logout.svg";
 
@@ -109,17 +108,7 @@ export default function Nav() {
 
         
           <div className="nav-section bottom">
-            <NavLink
-              to="/users"
-              className={({ isActive }) =>
-                `nav-item ${isActive ? "active" : ""}`
-              }
-              onClick={() => setIsOpen(false)}
-            >
-              <img src={chatOutlined} alt="Users" />
-              <span>Users</span>
-            </NavLink>
-
+            
             <NavLink
               to="/profile"
               className={({ isActive }) =>
@@ -160,17 +149,7 @@ export default function Nav() {
               <span>Get Support</span>
             </NavLink>
 
-            <NavLink
-              to="/feedback"
-              className={({ isActive }) =>
-                `nav-item ${isActive ? "active" : ""}`
-              }
-              onClick={() => setIsOpen(false)}
-            >
-              <img src={feedback} alt="Feedback" />
-              <span>Give Feedback</span>
-            </NavLink>
-
+           
             <NavLink
               to="/settings"
               className={({ isActive }) =>
