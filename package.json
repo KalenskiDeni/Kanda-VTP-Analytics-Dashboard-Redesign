@@ -1,12 +1,12 @@
 {
-  "homepage": "https://KalenskiDeni.github.io/OffThePath",
+  "homepage": "https://denikalenski.github.io/Kanda-VTP-Analytics-Dashboard-Redesign",
   "name": "react-vite-starter",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "start": "vite",
     "build": "vite build",
@@ -31,7 +31,7 @@
     "eslint-plugin-react": "^7.34.3",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
-    "gh-pages": "^6.2.0",
+    "gh-pages": "^6.3.0",
     "vite": "^5.3.4"
   }
 }
